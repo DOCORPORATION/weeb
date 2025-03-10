@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriHormonal - Alimentos para tu equilibrio hormonal</title>
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #1b5e20;
+            --accent-color: #ffeb3b;
+            --light-bg: #f1f8e9;
+            --dark-text: #333;
+            --light-text: #fff;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+        }
+        
+        nav {
+            background-color: var(--secondary-color);
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            transition: background-color 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .intro {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        /* Tarjetas de alimentos */
+        .food-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        .benefits, .risks {
+            margin-top: 1rem;
+        }
+        
+        .benefits h4, .vitamins h4, .risks h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .benefits ul, .vitamins ul, .risks ul {
+            padding-left: 1.5rem;
+        }
+        
+        /* Anuncios */
+        .ad-space {
+            background-color: #f8f8f8;
+            border: 1px dashed #ccc;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            border-radius: var(--border-radius);
+        }
+        
+        /* Pie de página */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .disclaimer {
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Responsivo */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            
+            .food-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Estilos para nueva sección de suplementos */
+        .supplements-section {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-top: 3rem;
+        }
+
+        .supplement-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+
+        .supplement-table th, 
+        .supplement-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .supplement-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .supplement-table tr:nth-child(even) {
+            background-color: #f8f8f8;
+        }
+
+        .supplement-table tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Suscripción newsletter */
+        .newsletter {
+            background-color: var(--primary-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            color: white;
+            margin-top: 3rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-form input {
+            flex-grow: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: var(--border-radius);
+        }
+
+        .newsletter-form button {
+            background-color: var(--accent-color);
+            color: var(--dark-text);
+            font-weight: bold;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>NutriHormonal</h1>
+        <p>Optimiza tu salud hormonal a través de la alimentación</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#testosterona">Testosterona</a></li>
+            <li><a href="#cortisol">Cortisol</a></li>
+            <li><a href="#tiroides">Tiroides</a></li>
+            <li><a href="#estrogenos">Estrógenos</a></li>
+            <li><a href="#insulina">Insulina</a></li>
+            <li><a href="#suplementos">Suplementos</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section class="intro">
+            <h2>¿Qué relación tienen los alimentos con nuestras hormonas?</h2>
+            <p>Los alimentos que consumimos tienen un impacto directo en nuestro equilibrio hormonal. Ciertos nutrientes, vitaminas y minerales son precursores para la producción de hormonas o pueden influir en su metabolismo y función.</p>
+            <p>En esta guía, te presentamos los alimentos que la ciencia ha relacionado con la producción y regulación de diferentes hormonas, así como sus beneficios y posibles riesgos. Recuerda que cada organismo es único y estos alimentos deben formar parte de una dieta equilibrada.</p>
+        </section>
+        
+        <!-- Anuncio banner superior -->
+        <div class="ad-space">
+            <p>Espacio para anuncio banner</p>
+        </div>
+        
+        <section id="testosterona">
+            <h2>Alimentos para optimizar la testosterona</h2>
+            <p>La testosterona es una hormona esencial tanto para hombres como para mujeres, aunque en diferentes niveles. Influye en la masa muscular, densidad ósea, distribución de grasa, fuerza, producción de glóbulos rojos y salud sexual.</p>
+            
+            <div class="food-cards">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Huevos</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="benefits">
+                            <h4>Beneficios hormonales:</h4>
+                            <ul>
+                                <li>Ricos en colesterol (precursor de testosterona)</li>
+                                <li>Contienen vitamina D que favorece la producción hormonal</li>
+                                <li>Aportan proteínas de alta calidad para recuperación muscular</li>
+                            </ul>
+                        </div>
+                        <div class="vitamins">
+                            <h4>Vitaminas y minerales:</h4>
+                            <ul>
+                                <li>Vitamina D: 41 UI por huevo grande</li>
+                                <li>Colina: 147 mg por huevo grande</li>
+                                <li>Selenio: 15.4 mcg por huevo grande</li>
+                            </ul>
+                        </div>
+                        <div class="risks">
+                            <h4>Posibles riesgos:</h4>
+                            <ul>
+                                <li>Alergias en personas sensibles</li>
+                                <li>Precaución en personas con niveles altos de colesterol</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Ostras</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="benefits">
+                            <h4>Beneficios hormonales:</h4>
+                            <ul>
+                                <li>Altísimo contenido en zinc, mineral esencial para la producción de testosterona</li>
+                                <li>Favorecen la salud reproductiva masculina</li>
+                                <li>Ricas en proteínas de alta biodisponibilidad</li>
+                            </ul>
+                        </div>
+                        <div class="vitamins">
+                            <h4>Vitaminas y minerales:</h4>
+                            <ul>
+                                <li>Zinc: 32-45 mg por 100g</li>
+                                <li>Vitamina B12: 16 mcg por 100g</li>
+                                <li>Hierro: 6.1 mg por 100g</li>
+                            </ul>
+                        </div>
+                        <div class="risks">
+                            <h4>Posibles riesgos:</h4>
+                            <ul>
+                                <li>Potencial contaminación si no provienen de aguas limpias</li>
+                                <li>Alergias en personas sensibles a mariscos</li>
+                                <li>El exceso de zinc puede causar problemas digestivos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Aguacate</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="benefits">
+                            <h4>Beneficios hormonales:</h4>
+                            <ul>
+                                <li>Rico en grasas saludables necesarias para la producción hormonal</li>
+                                <li>Contiene boro, mineral que puede aumentar los niveles de testosterona</li>
+                                <li>Aporta vitamina E, antioxidante que protege las células productoras de hormonas</li>
+                            </ul>
+                        </div>
+                        <div class="vitamins">
+                            <h4>Vitaminas y minerales:</h4>
+                            <ul>
+                                <li>Vitamina E: 2.7 mg por aguacate</li>
+                                <li>Boro: 2-4 mg por aguacate</li>
+                                <li>Potasio: 485 mg por aguacate</li>
+                            </ul>
+                        </div>
+                        <div class="risks">
+                            <h4>Posibles riesgos:</h4>
+                            <ul>
+                                <li>Alto contenido calórico si se consume en exceso</li>
+                                <li>Alergias en personas sensibles</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Anuncio en medio de contenido -->
+        <div class="ad-space">
+            <p>Espacio para anuncio rectangular</p>
+        </div>
+        
+        <section id="cortisol">
+            <h2>Alimentos que regulan el cortisol</h2>
+            <p>El cortisol es conocido como la "hormona del estrés". Niveles crónicamente elevados pueden afectar negativamente la producción de otras hormonas. Estos alimentos ayudan a mantener el cortisol en niveles saludables.</p>
+            
+            <div class="food-cards">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Chocolate negro</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="benefits">
+                            <h4>Beneficios hormonales:</h4>
+                            <ul>
+                                <li>Reduce los niveles de cortisol</li>
+                                <li>Aumenta la producción de serotonina y endorfinas</li>
+                                <li>Los flavonoides mejoran la función vascular</li>
+                            </ul>
+                        </div>
+                        <div class="vitamins">
+                            <h4>Vitaminas y minerales:</h4>
+                            <ul>
+                                <li>Magnesio: 176 mg por 100g</li>
+                                <li>Hierro: 11.9 mg por 100g</li>
+                                <li>Zinc: 3.3 mg por 100g</li>
+                            </ul>
+                        </div>
+                        <div class="risks">
+                            <h4>Posibles riesgos:</h4>
+                            <ul>
+                                <li>Contenido de cafeína puede afectar el sueño</li>
+                                <li>Puede contener azúcares añadidos</li>
+                                <li>Alto en calorías si se consume en exceso</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Té verde</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="benefits">
+                            <h4>Beneficios hormonales:</h4>
+                            <ul>
+                                <li>La L-teanina reduce el cortisol y promueve relajación</li>
+                                <li>Los antioxidantes protegen las células del estrés oxidativo</li>
+                                <li>Mejora la sensibilidad a la insulina</li>
+                            </ul>
+                        </div>
+                        <div class="vitamins">
+                            <h4>Compuestos bioactivos:</h4>
+                            <ul>
+                                <li>L-teanina: 25-60 mg por taza</li>
+                                <li>EGCG (catequina): 50-100 mg por taza</li>
+                                <li>Polifenoles: 140-200 mg por taza</li>
+                            </ul>
+                        </div>
+                        <div class="risks">
+                            <h4>Posibles riesgos:</h4>
+                            <ul>
+                                <li>La cafeína puede causar nerviosismo en personas sensibles</li>
+                                <li>Puede interactuar con ciertos medicamentos</li>
+                                <li>Consumo excesivo puede afectar la absorción de hierro</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Semillas de chía</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="benefits">
+                            <h4>Beneficios hormonales:</h4>
+                            <ul>
+                                <li>Los ácidos grasos omega-3 reducen inflamación y cortisol</li>
+                                <li>La fibra estabiliza los niveles de glucosa en sangre</li>
+                                <li>El magnesio mejora la calidad del sueño</li>
+                            </ul>
+                        </div>
+                        <div class="vitamins">
+                            <h4>Vitaminas y minerales:</h4>
+                            <ul>
+                                <li>Omega-3: 4915 mg por 30g</li>
+                                <li>Magnesio: 95 mg por 30g</li>
+                                <li>Fibra: 10g por 30g</li>
+                            </ul>
+                        </div>
+                        <div class="risks">
+                            <h4>Posibles riesgos:</h4>
+                            <ul>
+                                <li>Pueden causar problemas digestivos si no se hidratan correctamente</li>
+                                <li>Alergias en personas sensibles</li>
+                                <li>Riesgo de asfixia si no se preparan adecuadamente</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="tiroides">
+            <h2>Alimentos para la salud tiroidea</h2>
+            <p>La tiroides produce hormonas que regulan el metabolismo, temperatura corporal, frecuencia cardíaca y muchas otras funciones vitales. Estos alimentos contienen nutrientes esenciales para su correcto funcionamiento.</p>
+            
+            <div class="food-cards">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Algas marinas</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="benefits">
+                            <h4>Beneficios hormonales:</h4>
+                            <ul>
+                                <li>Ricas en yodo, mineral esencial para la producción de hormonas tiroideas</li>
+                                <li>Contienen antioxidantes que protegen la glándula tiroides</li>
+                                <li>Aportan minerales traza importantes para el metabolismo</li>
+                            </ul>
+                        </div>
+                        <div class="vitamins">
+                            <h4>Vitaminas y minerales:</h4>
+                            <ul>
+                                <li>Yodo: 232-4500 mcg por 100g (varía según el tipo)</li>
+                                <li>Hierro: 2.8 mg por 100g</li>
+                                <li>Magnesio: 121 mg por 100g</li>
+                            </ul>
+                        </div>
+                        <div class="risks">
+                            <h4>Posibles riesgos:</h4>
+                            <ul>
+                                <li>El exceso de yodo puede provocar hipertiroidismo</li>
+                                <li>Pueden contener metales pesados si provienen de aguas contaminadas</li>
+                                <li>Contraindicadas en personas con hipertiroidismo</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Nueces de Brasil</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="benefits">
+                            <h4>Beneficios hormonales:</h4>
+                            <ul>
+                                <li>Extremadamente ricas en selenio, mineral crucial para la función tiroidea</li>
+                                <li>Contienen grasas saludables que favorecen la absorción de vitaminas liposolubles</li>
+                                <li>Aportan L-arginina que mejora la circulación</li>
+                            </ul>
+                        </div>
+                        <div class="vitamins">
+                            <h4>Vitaminas y minerales:</h4>
+                            <ul>
+                                <li>Selenio: 96 mcg por nuez (1917% VDR)</li>
+                                <li>Magnesio: 107 mg por 100g</li>
+                                <li>Zinc: 4.2 mg por 100g</li>
+                            </ul>
+                        </div>
+                        <div class="risks">
+                            <h4>Posibles riesgos:</h4>
+                            <ul>
+                                <li>Sobredosis de selenio con consumo excesivo (más de 4-5 nueces diarias)</li>
+                                <li>Alergias en personas sensibles a frutos secos</li>
+                                <li>Alto contenido en calorías</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Carne roja magra</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="benefits">
+                            <h4>Beneficios hormonales:</h4>
+                            <ul>
+                                <li>Rica en zinc y hierro, minerales que favorecen la función tiroidea</li>
+                                <li>Aporta proteínas completas necesarias para la producción hormonal</li>
+                                <li>Contiene vitamina B12 para la salud del sistema nervioso</li>
+                            </ul>
+                        </div>
+                        <div class="vitamins">
+                            <h4>Vitaminas y minerales:</h4>
+                            <ul>
+                                <li>Hierro hemo: 2.7 mg por 100g</li>
+                                <li>Zinc: 4.8 mg por 100g</li>
+                                <li>Vitamina B12: 2.5 mcg por 100g</li>
+                            </ul>
+                        </div>
+                        <div class="risks">
+                            <h4>Posibles riesgos:</h4>
+                            <ul>
+                                <li>Alto contenido en grasas saturadas</li>
+                                <li>Relacionada con mayor riesgo cardiovascular en consumo excesivo</li>
+                                <li>La carne procesada contiene conservantes potencialmente dañinos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Anuncio lateral -->
+        <div class="ad-space">
+            <p>Espacio para anuncio lateral</p>
+        </div>
+        
+        <section id="estrogenos">
+            <h2>Alimentos que regulan los estrógenos</h2>
+            <p>Los estrógenos son hormonas importantes tanto para mujeres como para hombres, aunque en diferentes niveles. Estos alimentos pueden ayudar a mantener un equilibrio saludable de estrógenos en el cuerpo.</p>
+            
+            <div class="food-cards">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Semillas de lino</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="benefits">
+                            <h4>Beneficios hormonales:</h4>
+                            <ul>
+                                <li>Contienen lignanos con efectos moduladores de estrógenos</li>
+                                <li>Ricas en ácidos grasos omega-3 antiinflamatorios</li>
+                                <li>La fibra soluble ayuda a eliminar exceso de estrógenos</li>
+                            </ul>
+                        </div>
+                        <div class="vitamins">
+                            <h4>Vitaminas y minerales:</h4>
+                            <ul>
+                                <li>Lignanos: 85.5 mg por 30g</li>
+                                <li>Omega-3 (ALA): 6.7g por 30g</li>
+                                <li>Fibra: 7.8g por 30g</li>
+                            </ul>
+                        </div>
+                        <div class="risks">
+                            <h4>Posibles riesgos:</h4>
+                            <ul>
+                                <li>Pueden interferir con algunos medicamentos</li>
+                                <li>No recomendadas durante el embarazo en grandes cantidades</li>
+                                <li>Pueden causar malestar digestivo en personas sensibles</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Brócoli</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="benefits">
+                            <h4>Beneficios hormonales:</h4>
+                            <ul>
+                                <li>El indol-3-carbinol favorece el metabolismo saludable de estrógenos</li>
+                                <li>El sulforafano apoya la desintoxicación hepática de hormonas</li>
+                                <li>Rico en fibra que ayuda a eliminar estrógenos excesivos</li>
+                            </ul>
+                        </div>
+                        <div class="vitamins">
+                            <h4>Vitaminas y minerales:</h4>
+                            <ul>
+                                <li>Vitamina C: 89.2 mg por 100g</li>
+                                <li>Folato: 63 mcg por 100g</li>
+                                <li>Vitamina K: 102 mcg por 100g</li>
+                            </ul>
+                        </div>
+                        <div class="risks">
+                            <h4>Posibles riesgos:</h4>
+                            <ul>
+                                <li>Puede causar gases e hinchazón en personas sensibles</li>
+                                <li>Interactúa con medicamentos anticoagulantes por su alto contenido en vitamina K</li>
+                                <li>Los compuestos goitrógenos pueden afectar la función tiroidea en exceso</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Granada</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="benefits">
+                            <h4>Beneficios hormonales:</h4>
+                            <ul>
+                                <li>Inhibe la aromatasa, enzima que convierte testosterona en estrógenos</li>
+                                <li>Contiene compuestos que pueden bloquear receptores de estrógenos</li>
+                                <li>Potente antioxidante que protege células reproductivas</li>
+                            </ul>
+                        </div>
+                        <div class="vitamins">
+                            <h4>Vitaminas y minerales:</h4>
+                            <ul>
+                                <li>Vitamina C: 10.2 mg por 100g</li>
+                                <li>Vitamina K: 16.4 mcg por 100g</li>
+                                <li>Polifenoles: 1808-2117 mg por litro de jugo</li>
+                            </ul>
+                        </div>
+                        <div class="risks">
+                            <h4>Posibles riesgos:</h4>
+                            <ul>
+                                <li>Puede interactuar con medicamentos metabolizados por el hígado</li>
+                                <li>El jugo puede interferir con estatinas y otros medicamentos</li>
+                                <li>Alto contenido en azúcares naturales</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Anuncio inferior -->
+        <div class="ad-space">
+            <p>Espacio para anuncio inferior</p>
+        </div>
+        
+         <section id="insulina">
+            <h2>Alimentos que equilibran la insulina</h2>
+            <p>La insulina es una hormona clave que regula los niveles de azúcar en sangre. Mantener niveles estables de insulina es fundamental para el bienestar hormonal general, el control del peso y la energía.</p>
+            
+            <div class="food-cards">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Canela</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="benefits">
+                            <h4>Beneficios hormonales:</h4>
+                            <ul>
+                                <li>Mejora la sensibilidad a la insulina</li>
+                                <li>Reduce los niveles de azúcar en sangre en ayunas</li>
+                                <li>Disminuye la resistencia a la insulina</li>
+                            </ul>
+                        </div>
+                        <div class="vitamins">
+                            <h4>Compuestos bioactivos:</h4>
+                            <ul>
+                                <li>MHCP (metilhidroxicalcona)</li>
+                                <li>Cinamaldehído</li>
+                                <li>Polifenoles antioxidantes</li>
+                            </ul>
+                        </div>
+                        <div class="risks">
+                            <h4>Posibles riesgos:</h4>
+                            <ul>
+                                <li>En altas dosis puede interactuar con medicamentos para diabetes</li>
+                                <li>La canela de Cassia contiene cumarina que puede afectar al hígado</li>
+                                <li>Puede provocar alergias en personas sensibles</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Vinagre de manzana</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="benefits">
+                            <h4>Beneficios hormonales:</h4>
+                            <ul>
+                                <li>Reduce la respuesta glucémica tras las comidas</li>
+                                <li>Mejora la sensibilidad a la insulina</li>
+                                <li>Promueve la pérdida de peso al aumentar la saciedad</li>
+                            </ul>
+                        </div>
+                        <div class="vitamins">
+                            <h4>Compuestos bioactivos:</h4>
+                            <ul>
+                                <li>Ácido acético: 5-6%</li>
+                                <li>Polifenoles antioxidantes</li>
+                                <li>Enzimas y probióticos naturales</li>
+                            </ul>
+                        </div>
+                        <div class="risks">
+                            <h4>Posibles riesgos:</h4>
+                            <ul>
+                                <li>Puede erosionar el esmalte dental si no se diluye</li>
+                                <li>Puede irritar la garganta y el esófago</li>
+                                <li>Puede interactuar con algunos medicamentos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Cúrcuma</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="benefits">
+                            <h4>Beneficios hormonales:</h4>
+                            <ul>
+                                <li>Reduce la inflamación que contribuye a la resistencia a la insulina</li>
+                                <li>Mejora la función de las células beta pancreáticas</li>
+                                <li>Puede ayudar a prevenir la diabetes tipo 2</li>
+                            </ul>
+                        </div>
+                        <div class="vitamins">
+                            <h4>Compuestos bioactivos:</h4>
+                            <ul>
+                                <li>Curcumina: 2-5% del peso seco</li>
+                                <li>Turmerones</li>
+                                <li>Oligoelementos: manganeso, hierro, potasio</li>
+                            </ul>
+                        </div>
+                        <div class="risks">
+                            <h4>Posibles riesgos:</h4>
+                            <ul>
+                                <li>Puede interactuar con anticoagulantes</li>
+                                <li>Puede causar malestar estomacal en dosis altas</li>
+                                <li>Baja absorción si no se combina con pimienta negra o grasas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Anuncio intermedio -->
+        <div class="ad-space">
+            <p>Espacio para anuncio rectangular</p>
+        </div>
+        
+        <!-- Nueva sección de suplementos -->
+        <section id="suplementos" class="supplements-section">
+            <h2>Suplementos para el equilibrio hormonal</h2>
+            <p>Aunque siempre es preferible obtener los nutrientes de alimentos integrales, algunos suplementos pueden ser beneficiosos para apoyar el equilibrio hormonal. Consulta siempre con un profesional de la salud antes de iniciar cualquier suplementación.</p>
+            
+            <table class="supplement-table">
+                <thead>
+                    <tr>
+                        <th>Suplemento</th>
+                        <th>Beneficios hormonales</th>
+                        <th>Dosis típica</th>
+                        <th>Precauciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Magnesio</td>
+                        <td>Apoya la producción de testosterona, reduce el cortisol, mejora la calidad del sueño</td>
+                        <td>200-400 mg/día</td>
+                        <td>Puede causar diarrea en dosis altas. Evitar con enfermedad renal severa.</td>
+                    </tr>
+                    <tr>
+                        <td>Zinc</td>
+                        <td>Esencial para la producción de testosterona y función tiroidea</td>
+                        <td>15-30 mg/día</td>
+                        <td>El exceso puede interferir con la absorción de cobre. No tomar a largo plazo sin supervisión.</td>
+                    </tr>
+                    <tr>
+                        <td>Vitamina D3</td>
+                        <td>Apoya la producción de hormonas esteroideas, mejora la sensibilidad a la insulina</td>
+                        <td>1000-5000 UI/día</td>
+                        <td>Toxicidad en dosis muy altas. Verificar niveles con análisis antes de suplementar.</td>
+                    </tr>
+                    <tr>
+                        <td>Ashwagandha</td>
+                        <td>Reduce el cortisol, puede aumentar la testosterona, adaptógeno para el estrés</td>
+                        <td>300-600 mg/día (extracto)</td>
+                        <td>Puede interactuar con medicamentos para tiroides, sedantes y inmunosupresores.</td>
+                    </tr>
+                    <tr>
+                        <td>DIM (Diindolilmetano)</td>
+                        <td>Apoya el metabolismo saludable de estrógenos</td>
+                        <td>100-200 mg/día</td>
+                        <td>Puede causar cambios en el ciclo menstrual. Evitar durante el embarazo.</td>
+                    </tr>
+                    <tr>
+                        <td>Omega-3 (EPA/DHA)</td>
+                        <td>Reduce inflamación, apoya la sensibilidad a la insulina y salud hormonal</td>
+                        <td>1000-2000 mg/día</td>
+                        <td>Puede aumentar el tiempo de sangrado. Precaución con anticoagulantes.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <!-- Sección de newsletter -->
+        <section class="newsletter">
+            <h3>¡Recibe nuestras actualizaciones!</h3>
+            <p>Suscríbete a nuestro boletín y recibe las últimas investigaciones sobre nutrición y salud hormonal, recetas saludables y consejos prácticos.</p>
+            
+            <form class="newsletter-form">
+                <input type="email" placeholder="Tu correo electrónico" required>
+                <button type="submit">Suscribirse</button>
+            </form>
+        </section>
+        
+        <!-- Anuncio inferior -->
+        <div class="ad-space">
+            <p>Espacio para anuncio inferior</p>
+        </div>
+        
+        <section id="contacto">
+            <h2>Contacto y asesoramiento personalizado</h2>
+            <p>La información proporcionada en esta web es de carácter general y educativo. Para un plan nutricional personalizado según tus necesidades hormonales específicas, no dudes en contactar con nuestros especialistas.</p>
+            
+            <form style="background-color: white; padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
+                <div style="margin-bottom: 1rem;">
+                    <label for="nombre" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Nombre completo:</label>
+                    <input type="text" id="nombre" name="nombre" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: var(--border-radius);">
+                </div>
+                
+                <div style="margin-bottom: 1rem;">
+                    <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Email:</label>
+                    <input type="email" id="email" name="email" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: var(--border-radius);">
+                </div>
+                
+                <div style="margin-bottom: 1rem;">
+                    <label for="mensaje" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Mensaje o consulta:</label>
+                    <textarea id="mensaje" name="mensaje" rows="4" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: var(--border-radius);"></textarea>
+                </div>
+                
+                <button type="submit" style="background-color: var(--primary-color); color: white; border: none; padding: 1rem 2rem; border-radius: var(--border-radius); cursor: pointer; font-weight: bold;">Enviar consulta</button>
+            </form>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <h3>NutriHormonal</h3>
+            <p>Tu fuente de información sobre nutrición y equilibrio hormonal</p>
+            
+            <div class="disclaimer">
+                <p>Aviso importante: La información proporcionada en este sitio web es de carácter educativo y no sustituye la consulta con un profesional de la salud. Si tienes problemas hormonales o condiciones médicas, consulta siempre con un médico calificado antes de realizar cambios en tu dieta o rutina.</p>
+                <p>© 2025 NutriHormonal. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
